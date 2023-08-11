@@ -1,0 +1,18 @@
+.modal-lightbox {
+  .modal-body {
+    padding: 2px;
+    img {
+      border-radius: 6px;
+    }
+  }
+  .btn-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+    background-color: var(--bs-modal-bg);
+    padding: 6px;
+    z-index: 5;
+    opacity: 1;
+  }
+}

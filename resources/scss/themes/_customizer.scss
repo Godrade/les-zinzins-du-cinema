@@ -1,0 +1,226 @@
+/**======================================================================
+=========================================================================
+Template Name: Able Pro - Bootstrap Admin Template
+Author: DashboardKit
+Support: dashboardkit@gmail.com
+File: style.css
+=========================================================================
+=================================================================================== */
+// theme font
+// main framework
+$menu-styler: 350px;
+$pct-colors: ();
+$pct-colors: map-merge(
+  (
+    "primary": $primary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "dark": $dark,
+  ),
+  $pct-colors
+);
+
+.pct-c-btn {
+  display: block;
+  padding: 0px;
+  border: 4px solid $card-bg;
+  border-right: none;
+  position: fixed;
+  overflow: hidden;
+  right: 0;
+  top: 130px;
+  z-index: 1030;
+  transition: all 0.15s ease-in-out;
+  border-radius: 50% 4px 4px 50%;
+  box-shadow: -6px 0px 14px 1px rgba(27, 46, 94, 0.08);
+  background: $card-bg;
+  a {
+    display: block;
+    padding: 12px 12px 12px 16px;
+    transition: all 0.08s cubic-bezier(0.37, 0.24, 0.53, 0.99);
+    svg {
+      width: 30px;
+      animation: anim-rotate 2.5s infinite linear;
+      height: 30px;
+      color: var(--bs-primary);
+    }
+    &:hover {
+      background-color: rgba(var(--bs-primary-rgb), 0.1);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+@keyframes anim-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.pct-offcanvas {
+  --bs-offcanvas-width: #{$menu-styler};
+  --bs-offcanvas-zindex: 1305;
+
+  transition: transform 0.45s cubic-bezier(0.37, 0.24, 0.53, 0.99);
+  box-shadow: 8px 0 14px rgba(27, 46, 94, 0.4);
+  ~ .offcanvas-backdrop {
+    opacity: 0.2;
+  }
+  .offcanvas-body {
+    padding: 25px;
+  }
+  .avtar.avtar-xs {
+    width: 36px;
+    height: 36px;
+  }
+  .list-group-item {
+    padding: 20px 0;
+    > div > .pct-content,
+    a.btn {
+      padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
+    }
+  }
+}
+.preset-btn{
+  height: 60px;
+  border: 2px solid var(--bs-gray-300);
+  --bs-btn-active-border-color : var(--bs-gray-300);
+  &:active,
+  &.active{
+    border: 2px solid var(--bs-primary);
+  }
+  &:not(.active){
+    background: var(--bs-body-bg);
+  }
+}
+.theme-color {
+  display: flex;
+  position: relative;
+  padding: 0;
+  > a {
+    position: relative;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.15s ease-in-out;
+    margin-right: 5px;
+    width: 20px;
+    height: 60px;
+    flex: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      z-index: 1;
+      transform: scale(0);
+      transition: all 0.15s ease-in-out;
+    }
+    i {
+      font-size: 20px;
+      color: #fff;
+      transform: scale(0);
+      transition: all 0.15s ease-in-out;
+      &::before {
+        position: relative;
+        z-index: 5;
+      }
+    }
+    &:hover{
+      &::after{
+        transform: scale(1);
+      }
+    }
+    &.active {
+      flex: 1;
+      &::after,
+      i {
+        transform: scale(1);
+      }
+    }
+  }
+  &.preset-color {
+    $i: 1;
+    @each $name, $value in $preset-colors {
+      > a {
+        &[data-value="preset-#{$i}"] {
+          background: map-get($value, "primary");
+        }
+      }
+      $i: $i + 1;
+    }
+  }
+}
+
+// header color varient Start
+$header-c-background: #141414;
+$header-c-color: #fff;
+
+.pc-header {
+  &[class*="bg-"],
+  &.dark-header {
+    box-shadow: none;
+    background: $header-c-background;
+    color: $header-c-color;
+
+    @media (min-width: 1025px) {
+      .pc-head-link {
+        color: $header-c-color;
+
+        i {
+          color: $header-c-color;
+        }
+
+        .material-icons-two-tone {
+          background-color: $header-c-color;
+        }
+
+        &.active,
+        &:active,
+        &:focus,
+        &:hover {
+          color: $header-c-color;
+          background: transparentize($white, 0.85);
+
+          .material-icons-two-tone {
+            background-color: $header-c-color;
+          }
+        }
+
+        .user-desc {
+          color: transparentize($header-c-color, 0.3);
+        }
+      }
+    }
+  }
+}
+
+// header color varient end
+
+[data-pc-layout="compact"] [data-pc-layout="horizontal"] {
+  .pc-rtl {
+    display: none;
+  }
+}
+.auth-main {
+  ~ .pct-offcanvas {
+    .pc-boxcontainer {
+      display: none;
+    }
+  }
+}
