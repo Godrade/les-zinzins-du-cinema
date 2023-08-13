@@ -15,6 +15,10 @@ class MovieController extends Controller
 
     public function store(MovieRequest $request, Tmdb $tmdb)
     {
+        if (Movie::where('tmdb_id', $request->tmdb_id)->exists()) {
+            return redirect()->route('search.show', $request->tmdb_id)->withErrors("Le film est déjà dans une liste.");
+        }
+
         $movie = $tmdb->getMovie($request->tmdb_id);
         $movie = Movie::create([
             'title' => $movie['title'],
@@ -24,7 +28,6 @@ class MovieController extends Controller
             'backdrop_path' => $movie['backdrop_path'],
             'isViewed' => false,
         ]);
-
         $movie->listings()->attach($request->listing_id);
 
         return redirect()->route('search.show', $movie->tmdb_id)->with('success', 'Le film a bien été ajouté à la liste.');
