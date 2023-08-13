@@ -35,7 +35,12 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h5 class="my-3">{{ $result['title'] }}</h5>
+                            <h5 class="my-3">{{ $result['title'] }}
+                                @if(isset($movie) && $movie->listings->first())
+                                    - <span class="badge" style="background-color: {{ $movie->listings->first()->color }}">
+                                        {{ $movie->listings->first()->title }}
+                                    </span>
+                                @endif</h5>
                             <p>Release: {{ \Carbon\Carbon::parse($result['release_date'])->format('d/m/y') }}</p>
                             <p>Popularity: {{ $result['popularity'] }}</p>
                             <p>Vote: {{ $result['vote_average'] }}</p>
@@ -90,9 +95,10 @@
                                 </div>
                             @endif
 
-                            @if(isset($movie) && !$movie->isViewed)
+                            @if(isset($movie) && !$movie->isViewed && !$movie->listings->contains('id', 3))
                                 <div class="position-absolute bottom-0 end-0 p-4">
-                                    <a href="{{ route('movies.update', $movie) }}" class="btn btn-light-primary m-t-10">Marquer comme vu</a>
+                                    <a href="{{ route('movies.update', $movie) }}" class="btn btn-light-primary m-t-10">Marquer
+                                        comme vu</a>
                                 </div>
                             @endif
 
