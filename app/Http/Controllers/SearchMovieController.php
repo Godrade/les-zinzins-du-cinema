@@ -20,7 +20,7 @@ class SearchMovieController extends Controller
         $listings = Listing::where('isSelectable', true)->get();
 
         $movie = Movie::where('tmdb_id', $tmdbID)
-            ->with('votes')
+            ->with(['votes', 'votes.user'])
             ->first() ?? null;
 
         return view('search.show', compact('result', 'listings', 'movie'));

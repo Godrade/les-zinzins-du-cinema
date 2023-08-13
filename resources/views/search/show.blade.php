@@ -25,7 +25,8 @@
 
                                         @if($movie && $movie->votes->avg('rating'))
                                             <div class="position-absolute top-0 start-0 p-2">
-                                                <span class="badge bg-dark p-2" style="font-size: 18px">{{ rating($movie->votes->avg('rating')) }}</span>
+                                                <span class="badge bg-dark p-2"
+                                                      style="font-size: 18px">{{ rating($movie->votes->avg('rating')) }}</span>
                                             </div>
                                         @endif
 
@@ -37,12 +38,23 @@
                         <div class="col-md-6">
                             <h5 class="my-3 mb-1">{{ $result['title'] }}
                                 @if(isset($movie) && $movie->listings->first())
-                                    - <span class="badge" style="background-color: {{ $movie->listings->first()->color }}">
+                                    - <span class="badge"
+                                            style="background-color: {{ $movie->listings->first()->color }}">
                                         {{ $movie->listings->first()->title }}
                                     </span>
                                 @endif</h5>
-                            <p class="mb-0">{{ \Carbon\Carbon::parse($result['release_date'])->format('d/m/y') }} - {{ runtimes($result['runtime']) }}</p>
-                            <p>Public : {{ rating($result['vote_average']) }} <span>({{ $result['vote_count'] }} votes)</span></p>
+                            <p class="mb-0">{{ \Carbon\Carbon::parse($result['release_date'])->format('d/m/y') }}
+                                - {{ runtimes($result['runtime']) }}</p>
+                            <p>Public : {{ rating($result['vote_average']) }}
+                                <span>({{ $result['vote_count'] }} votes)</span></p>
+
+                            @if($movie && $movie->votes->avg('rating'))
+                                @foreach($movie->votes as $vote)
+                                    <p @class(['mb-0' => !$loop->last])>
+                                        {{ $vote->user->name }} : {{ rating($vote->rating) }}
+                                    </p>
+                                @endforeach
+                            @endif
 
                             <ul class="list-unstyled d-flex flex-wrap gap-2">
                                 @foreach($result['genres'] as $genre)
@@ -78,7 +90,6 @@
 
                             @if(isset($movie) && !$movie->votes->contains('user_id', auth()->id()) && !$movie->listings->contains('id', 3))
                                 <div>
-                                    <p class="my-3">Votez pour ce film</p>
                                     <form action="{{ route('movies.vote.store',$movie) }}" method="POST">
                                         @csrf
 
