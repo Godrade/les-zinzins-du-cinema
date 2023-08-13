@@ -95,6 +95,28 @@
                     </a>
                 </li>
 
+                <li class="pc-item">
+                    <a href="{{ route('movies.index') }}" class="pc-link">
+                        <span class="pc-micon">
+                              <svg class="pc-icon">
+                                <use xlink:href="#custom-video-play"></use>
+                              </svg>
+                        </span>
+                        <span class="pc-mtext">Rechercher un film</span>
+                    </a>
+                </li>
+
+                <li class="pc-item">
+                    <a href="{{ route('listings.index') }}" class="pc-link">
+                        <span class="pc-micon">
+                              <svg class="pc-icon">
+                                <use xlink:href="#custom-document-text"></use>
+                              </svg>
+                        </span>
+                        <span class="pc-mtext">Liste</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('poster_path')->nullable()->default(null);
             $table->string('backdrop_path')->nullable()->default(null);
 
+            $table->boolean('isViewed')->default(false);
             $table->timestamps();
         });
     }

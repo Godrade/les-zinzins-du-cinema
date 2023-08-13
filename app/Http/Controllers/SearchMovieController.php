@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Api\Tmdb;
+use App\Models\Listing;
 
 class SearchMovieController extends Controller
 {
@@ -15,7 +16,8 @@ class SearchMovieController extends Controller
     public function show(Tmdb $tmdb, string $tmdbID)
     {
         $movie = $tmdb->getMovie($tmdbID);
-        dd($movie);
-        return view('search.show', compact('movie'));
+        $listings = Listing::get();
+
+        return view('search.show', compact('movie', 'listings'));
     }
 }

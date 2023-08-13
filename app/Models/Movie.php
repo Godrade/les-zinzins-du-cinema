@@ -12,5 +12,11 @@ class Movie extends Model
         'imdb_id',
         'poster_path',
         'backdrop_path',
+        'isViewed',
     ];
+
+    public function listings()
+    {
+        return $this->belongsToMany(Listing::class);
+    }
 }
