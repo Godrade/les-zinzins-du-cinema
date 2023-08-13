@@ -26,9 +26,7 @@
                                 <td>{{ $list->description }}</td>
                                 <td>{{ $list->movies->count() }}</td>
                                 <td>
-                                    <a href=""
-                                       class="btn btn-sm btn-primary">Voir</a>
-                                    <a href="" class="btn btn-sm btn-warning">Modifier</a>
+                                    <a href="{{ route('listings.show', $list) }}" class="btn btn-sm btn-primary">Voir</a>
                                 </td>
                             </tr>
                         @endforeach

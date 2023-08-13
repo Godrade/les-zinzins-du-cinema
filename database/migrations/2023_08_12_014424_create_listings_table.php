@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('description')->nullable()->default(null);
             $table->string('color')->nullable()->default('#000000');
 
+            $table->boolean('isSelectable')->default(true);
             $table->timestamps();
         });
     }

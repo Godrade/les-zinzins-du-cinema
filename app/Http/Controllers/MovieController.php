@@ -29,4 +29,16 @@ class MovieController extends Controller
 
         return redirect()->route('listings.index');
     }
+
+    public function update(Movie $movie)
+    {
+        $movie->update([
+            'isViewed' => true,
+        ]);
+
+        $movie->listings()->detach();
+        $movie->listings()->attach(2);
+
+        return back()->with('success', 'Le film a bien été marqué comme vu.');
+    }
 }

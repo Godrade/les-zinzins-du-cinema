@@ -12,8 +12,6 @@ return new class extends Migration {
 
             $table->foreignId('movie_id')->constrained();
             $table->foreignId('listing_id')->constrained();
-
-            $table->timestamps();
         });
     }
 

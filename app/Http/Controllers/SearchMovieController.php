@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Api\Tmdb;
 use App\Models\Listing;
+use App\Models\Movie;
 
 class SearchMovieController extends Controller
 {
@@ -15,9 +16,13 @@ class SearchMovieController extends Controller
 
     public function show(Tmdb $tmdb, string $tmdbID)
     {
-        $movie = $tmdb->getMovie($tmdbID);
-        $listings = Listing::get();
+        $result = $tmdb->getMovie($tmdbID);
+        $listings = Listing::where('isSelectable', true)->get();
 
-        return view('search.show', compact('movie', 'listings'));
+        $movie = Movie::where('tmdb_id', $tmdbID)
+            ->with('votes')
+            ->first() ?? null;
+
+        return view('search.show', compact('result', 'listings', 'movie'));
     }
 }

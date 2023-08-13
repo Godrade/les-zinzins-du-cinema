@@ -15,8 +15,13 @@ class Movie extends Model
         'isViewed',
     ];
 
-    public function listings()
+    public function listings(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Listing::class);
+    }
+
+    public function votes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(MovieVote::class);
     }
 }

@@ -19,9 +19,13 @@ class ListingController extends Controller
         return redirect()->route('listings.index');
     }
 
-    public function show()
+    public function show(Listing $listing)
     {
+        $listing->load(['movies' => function ($q) {
+            $q->withAvg('votes', 'rating')->orderByDesc('votes_avg_rating');
+        }]);
 
+        return view('listings.show', compact('listing'));
     }
 
     public function edit()
