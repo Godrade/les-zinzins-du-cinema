@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\MovieController::class, 'index'])->name('movies.index');
 Route::post('/add', [\App\Http\Controllers\MovieController::class, 'store'])->name('movies.store');
 Route::get('/movies/{movie}', [\App\Http\Controllers\MovieController::class, 'update'])->name('movies.update');
 

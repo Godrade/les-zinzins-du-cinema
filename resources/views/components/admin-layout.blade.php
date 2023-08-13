@@ -84,27 +84,6 @@
                 <li class="pc-item pc-caption">
                     <label>Tableau de bord</label>
                 </li>
-                <li class="pc-item">
-                    <a href="" class="pc-link">
-                        <span class="pc-micon">
-                              <svg class="pc-icon">
-                                <use xlink:href="#custom-home"></use>
-                              </svg>
-                        </span>
-                        <span class="pc-mtext">Tableau de bord</span>
-                    </a>
-                </li>
-
-                <li class="pc-item">
-                    <a href="{{ route('movies.index') }}" class="pc-link">
-                        <span class="pc-micon">
-                              <svg class="pc-icon">
-                                <use xlink:href="#custom-video-play"></use>
-                              </svg>
-                        </span>
-                        <span class="pc-mtext">Rechercher un film</span>
-                    </a>
-                </li>
 
                 <li class="pc-item">
                     <a href="{{ route('listings.index') }}" class="pc-link">

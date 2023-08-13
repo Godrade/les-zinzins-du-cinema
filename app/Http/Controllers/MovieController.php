@@ -27,7 +27,7 @@ class MovieController extends Controller
 
         $movie->listings()->attach($request->listing_id);
 
-        return redirect()->route('listings.index');
+        return redirect()->route('search.show', $movie->tmdb_id)->with('success', 'Le film a bien été ajouté à la liste.');
     }
 
     public function update(Movie $movie)
