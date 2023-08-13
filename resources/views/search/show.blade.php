@@ -23,9 +23,9 @@
                                             @endif
                                         </div>
 
-                                        @if($movie)
+                                        @if($movie && $movie->votes->avg('rating'))
                                             <div class="position-absolute top-0 start-0 p-2">
-                                                <span class="badge bg-dark p-2" style="font-size: 18px">{{ $movie->votes->avg('rating') ?? "?" }}/10</span>
+                                                <span class="badge bg-dark p-2" style="font-size: 18px">{{ $movie->votes->avg('rating') }}/10</span>
                                             </div>
                                         @endif
 
