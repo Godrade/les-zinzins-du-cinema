@@ -21,10 +21,6 @@
             <div class="d-grid mt-4">
                 <button type="submit" class="btn btn-primary">Connexion</button>
             </div>
-            <div class="d-flex justify-content-between align-items-end mt-4">
-                <h6 class="f-w-500 mb-0">Vous n'avez pas de compte?</h6>
-                <a href="{{ route('register') }}" class="link-primary">S'inscrire</a>
-            </div>
         </form>
     </div>
 </x-auth-layout>
