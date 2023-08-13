@@ -28,7 +28,7 @@
                                     @if($movie->votes->avg('rating'))
                                         <div class="card-body position-absolute start-0 top-0">
                                             <a href="{{ route('search.show', $movie->tmdb_id) }}" class="btn btn-dark">
-                                                {{ $movie->votes->avg('rating') }}/10
+                                                {{ rating($movie->votes->avg('rating')) }}
                                             </a>
                                         </div>
                                     @endif

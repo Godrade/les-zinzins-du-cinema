@@ -7,3 +7,8 @@ function runtimes($minutes): string
 
     return "{$hours}h {$minutes}m";
 }
+
+function rating($rating): string
+{
+    return number_format($rating, 1) . '/10';
+}

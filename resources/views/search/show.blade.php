@@ -25,7 +25,7 @@
 
                                         @if($movie && $movie->votes->avg('rating'))
                                             <div class="position-absolute top-0 start-0 p-2">
-                                                <span class="badge bg-dark p-2" style="font-size: 18px">{{ $movie->votes->avg('rating') }}/10</span>
+                                                <span class="badge bg-dark p-2" style="font-size: 18px">{{ rating($movie->votes->avg('rating')) }}</span>
                                             </div>
                                         @endif
 
@@ -35,27 +35,22 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h5 class="my-3">{{ $result['title'] }}
+                            <h5 class="my-3 mb-1">{{ $result['title'] }}
                                 @if(isset($movie) && $movie->listings->first())
                                     - <span class="badge" style="background-color: {{ $movie->listings->first()->color }}">
                                         {{ $movie->listings->first()->title }}
                                     </span>
                                 @endif</h5>
-                            <p>Release: {{ \Carbon\Carbon::parse($result['release_date'])->format('d/m/y') }}</p>
-                            <p>Popularity: {{ $result['popularity'] }}</p>
-                            <p>Vote: {{ $result['vote_average'] }}</p>
-                            <p>Vote count: {{ $result['vote_count'] }}</p>
-                            <p>Durations: {{ runtimes($result['runtime']) }} </p>
+                            <p class="mb-0">{{ \Carbon\Carbon::parse($result['release_date'])->format('d/m/y') }} - {{ runtimes($result['runtime']) }}</p>
+                            <p>Public : {{ rating($result['vote_average']) }} <span>({{ $result['vote_count'] }} votes)</span></p>
+
+                            <ul class="list-unstyled d-flex flex-wrap gap-2">
+                                @foreach($result['genres'] as $genre)
+                                    <li><span class="badge bg-light-info">{{ $genre['name'] }}</span></li>
+                                @endforeach
+                            </ul>
 
                             <hr class="my-3">
-
-                            <div>
-                                <ul class="list-unstyled d-flex flex-wrap gap-2">
-                                    @foreach($result['genres'] as $genre)
-                                        <li><span class="badge bg-light-info">{{ $genre['name'] }}</span></li>
-                                    @endforeach
-                                </ul>
-                            </div>
 
                             <div>
                                 <p class="my-3">{{ $result['overview'] }}</p>
