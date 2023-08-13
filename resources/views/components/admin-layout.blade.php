@@ -64,7 +64,7 @@
 {{--                        </div>--}}
                         <div class="flex-grow-1 ms-3 me-2">
                             <h6 class="mb-0">{{ auth()->user()->name }}</h6>
-                            <small>Zinzin</small>
+                            <small>Note moyenne : {{ rating(auth()->user()->votes()->avg('rating')) }}</small>
                         </div>
                         <a class="btn btn-icon btn-link-secondary avtar" data-bs-toggle="collapse"
                            href="#pc_sidebar_userlink">
@@ -198,7 +198,7 @@
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
-        <x-admin-breadcrumb :title="$title"/>
+{{--        <x-admin-breadcrumb :title="$title"/>--}}
         <!-- [ Main Content ] start -->
 
         @include('components.message-validation')
