@@ -14,6 +14,8 @@
 
     <!-- [Favicon] icon -->
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon"/>
+    <!-- [Apple Icon] -->
+    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <!-- [Font] Family -->
     <link rel="stylesheet" href="{{ asset('assets/fonts/inter/inter.css') }}" id="main-font-link"/>
     <!-- [Tabler Icons] https://tablericons.com -->
@@ -47,21 +49,21 @@
 <!-- [ Sidebar Menu ] start -->
 <nav class="pc-sidebar">
     <div class="navbar-wrapper">
-        <div class="m-header pt-5 pb-4">
+        <div class="m-header pt-4 pb-3">
             <a href="#" class="b-brand text-primary">
                 <!-- ========   Change your logo from here   ============ -->
-                <img src="{{ asset('assets/images/lzdc-logo-small.png') }}" width="50px"/>
-                <span class="ms-2 theme-version">{{ config('app.name') }}</span>
+                <img src="{{ asset('assets/images/logo-dark.png') }}" width="130px" id="logo"/>
+
             </a>
         </div>
         <div class="navbar-content">
             <div class="card pc-user-card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
-{{--                        <div class="flex-shrink-0">--}}
-{{--                            <img src="../assets/images/user/avatar-1.jpg" alt="user-image"--}}
-{{--                                 class="user-avtar wid-45 rounded-circle"/>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="flex-shrink-0">--}}
+                        {{--                            <img src="../assets/images/user/avatar-1.jpg" alt="user-image"--}}
+                        {{--                                 class="user-avtar wid-45 rounded-circle"/>--}}
+                        {{--                        </div>--}}
                         <div class="flex-grow-1 ms-3 me-2">
                             <h6 class="mb-0">{{ auth()->user()->name }}</h6>
                             <small>Note moyenne : {{ rating(auth()->user()->votes()->avg('rating')) }}</small>
@@ -119,7 +121,8 @@
                     </a>
                 </li>
                 <li class="dropdown pc-h-item">
-                    <a class="pc-head-link dropdown-toggle arrow-none m-0 trig-drp-search" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="pc-head-link dropdown-toggle arrow-none m-0 trig-drp-search" data-bs-toggle="dropdown"
+                       href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <svg class="pc-icon">
                             <use xlink:href="#custom-search-normal-1"></use>
                         </svg>
@@ -165,12 +168,6 @@
                             </svg>
                             <span>Light</span>
                         </a>
-                        <a href="#!" class="dropdown-item" onclick="layout_change_default()">
-                            <svg class="pc-icon">
-                                <use xlink:href="#custom-setting-2"></use>
-                            </svg>
-                            <span>Default</span>
-                        </a>
                     </div>
                 </li>
                 <li class="dropdown pc-h-item">
@@ -198,7 +195,7 @@
 <!-- [ Main Content ] start -->
 <div class="pc-container">
     <div class="pc-content">
-{{--        <x-admin-breadcrumb :title="$title"/>--}}
+        {{--        <x-admin-breadcrumb :title="$title"/>--}}
         <!-- [ Main Content ] start -->
 
         @include('components.message-validation')
