@@ -9,8 +9,8 @@ class MovieRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tmdb_id' => 'required|string',
-            'listing_id' => 'required|integer',
+            'tmdb_id' => 'nullable|string',
+            'listing_id' => 'nullable|integer',
         ];
     }
 

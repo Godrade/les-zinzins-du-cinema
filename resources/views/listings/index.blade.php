@@ -10,28 +10,30 @@
                     </button>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Description</th>
-                            <th>Nombre de films</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($listings as $list)
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
                             <tr>
-                                <td><span class="badge" style="background-color: {{ $list->color }}">{{ $list->title }}</span></td>
-                                <td>{{ $list->description }}</td>
-                                <td>{{ $list->movies->count() }}</td>
-                                <td>
-                                    <a href="{{ route('listings.show', $list) }}" class="btn btn-sm btn-primary">Voir</a>
-                                </td>
+                                <th>Nom</th>
+                                <th class="d-none d-md-table-cell">Description</th>
+                                <th class="text-center">Nombre de films</th>
+                                <th class="text-end">Action</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($listings as $list)
+                                <tr>
+                                    <td><span class="badge" style="background-color: {{ $list->color }}">{{ $list->title }}</span></td>
+                                    <td class="d-none d-md-table-cell">{{ $list->description }}</td>
+                                    <td class="text-center">{{ $list->movies->count() }}</td>
+                                    <td class="text-end">
+                                        <a href="{{ route('listings.show', $list) }}" class="btn btn-sm btn-primary">Voir</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

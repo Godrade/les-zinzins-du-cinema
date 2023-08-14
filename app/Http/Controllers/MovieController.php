@@ -33,15 +33,35 @@ class MovieController extends Controller
         return redirect()->route('search.show', $movie->tmdb_id)->with('success', 'Le film a bien été ajouté à la liste.');
     }
 
-    public function update(Movie $movie)
+    public function update(MovieRequest $request, Movie $movie)
     {
-        $movie->update([
-            'isViewed' => true,
-        ]);
+        if ($movie->listings()->where('listing_id', 1)->exists()) {
+
+            $movie->update([
+                'isViewed' => true,
+            ]);
+
+            $movie->listings()->detach();
+            $movie->listings()->attach(2);
+
+            return back()->with('success', 'Le film a bien été marqué comme vu.');
+        }
+
+        if ($request->listing_id == 2) {
+            return back()->withErrors("Vous ne pouvez pas marquer un film comme vu s'il n'est pas dans la liste 'À voir'.");
+        }
 
         $movie->listings()->detach();
-        $movie->listings()->attach(2);
+        $movie->listings()->attach($request->listing_id);
 
-        return back()->with('success', 'Le film a bien été marqué comme vu.');
+        return back()->with('success', 'Le film a bien été déplacé.');
+    }
+
+    public function destroy(Movie $movie)
+    {
+        $movie->listings()->detach();
+        $movie->delete();
+
+        return back()->with('success', 'Le film a bien été supprimé.');
     }
 }

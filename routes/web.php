@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/add', [\App\Http\Controllers\MovieController::class, 'store'])->name('movies.store');
 Route::get('/movies/{movie}', [\App\Http\Controllers\MovieController::class, 'update'])->name('movies.update');
+Route::get('/movies/{movie}/delete', [\App\Http\Controllers\MovieController::class, 'destroy'])->name('movies.destroy');
 
 Route::get('/random/{listing}', [\App\Http\Controllers\MovieRandomController::class, 'index'])->name('movies.random');
 
